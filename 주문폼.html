@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>강테사주 · 사주 리포트 주문서</title>
+<style>
+  :root{ --inju:#9E2B25; --muk:#2B2622; --gold:#8A6D3B; --paper:#F7F2EA; --card:#fff; --line:#e7ddcb; --ok:#3f7e58; }
+  @media (prefers-color-scheme: dark){ :root{ --paper:#1a1614; --card:#241f1b; --muk:#f0e9df; --line:#3a332c; --inju:#d5766f; --gold:#c9a765; } }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{ font-family:'Malgun Gothic','Apple SD Gothic Neo',sans-serif; background:var(--paper);
+        color:var(--muk); min-height:100vh; display:flex; justify-content:center; padding:26px 16px 46px; }
+  .wrap{ width:100%; max-width:440px; }
+  .head{ text-align:center; margin-bottom:20px; }
+  .badge{ width:64px; height:64px; border-radius:50%; margin:0 auto 10px; display:flex; align-items:center;
+          justify-content:center; font-size:32px; background:radial-gradient(circle,#f6e6c8,#e9cf9e);
+          box-shadow:0 4px 16px rgba(138,109,59,.28); }
+  h1{ font-size:19px; color:var(--inju); margin-bottom:3px; }
+  .tag{ font-size:12.5px; color:var(--gold); }
+  form{ background:var(--card); border:1px solid var(--line); border-radius:16px; padding:18px 16px; }
+  label{ display:block; font-size:13px; font-weight:700; margin:14px 0 6px; }
+  label:first-child{ margin-top:0; }
+  .req{ color:var(--inju); font-size:11px; }
+  input[type=text], input[type=date], input[type=time], select{
+    width:100%; font-size:15px; padding:11px 12px; border:1px solid var(--line); border-radius:11px;
+    background:var(--paper); color:var(--muk); font-family:inherit; }
+  input:focus, select:focus{ outline:2px solid var(--gold); outline-offset:0; }
+  .seg{ display:flex; gap:8px; }
+  .seg label{ flex:1; margin:0; }
+  .seg input{ position:absolute; opacity:0; pointer-events:none; }
+  .seg span{ display:block; text-align:center; padding:11px 0; border:1px solid var(--line); border-radius:11px;
+    font-size:14px; font-weight:600; cursor:pointer; background:var(--paper); transition:.12s; }
+  .seg input:checked + span{ background:var(--inju); color:#fff; border-color:transparent; }
+  .row2{ display:flex; gap:10px; align-items:flex-end; }
+  .row2 > div{ flex:1; }
+  .chk{ display:flex; align-items:center; gap:8px; font-size:12.5px; font-weight:500; margin-top:8px; color:var(--gold); }
+  .chk input{ width:17px; height:17px; accent-color:var(--inju); }
+  .privacy{ font-size:11.5px; color:var(--gold); line-height:1.6; background:var(--paper); border:1px dashed var(--line);
+    border-radius:10px; padding:10px 12px; margin-top:16px; }
+  .consent{ display:flex; align-items:flex-start; gap:9px; margin-top:12px; font-size:12.5px; line-height:1.5; }
+  .consent input{ width:19px; height:19px; margin-top:1px; accent-color:var(--inju); flex-shrink:0; }
+  .btn{ width:100%; margin-top:16px; font-size:16px; font-weight:800; padding:14px; border:none; border-radius:13px;
+    background:linear-gradient(135deg,#a8322b,#7f2420); color:#fff; cursor:pointer; }
+  .btn:disabled{ background:#c4b6a4; cursor:not-allowed; }
+  .out{ display:none; margin-top:18px; }
+  .out.show{ display:block; }
+  .out h2{ font-size:14px; color:var(--ok); margin-bottom:8px; }
+  textarea{ width:100%; height:150px; font-family:ui-monospace,Consolas,monospace; font-size:12.5px; line-height:1.5;
+    padding:12px; border:1px solid var(--line); border-radius:11px; background:var(--paper); color:var(--muk); resize:vertical; }
+  .copy{ width:100%; margin-top:9px; font-size:14.5px; font-weight:700; padding:12px; border:1px solid var(--inju);
+    border-radius:11px; background:transparent; color:var(--inju); cursor:pointer; }
+  .copy.done{ background:var(--ok); color:#fff; border-color:transparent; }
+  .send{ font-size:12.5px; color:var(--muk); line-height:1.6; margin-top:12px; text-align:center; }
+  .err{ color:var(--inju); font-size:12px; margin-top:8px; min-height:16px; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="badge">📜</div>
+      <h1>사주 리포트 주문서</h1>
+      <div class="tag">15쪽 개인 사주 리포트 · 9,900원</div>
+    </div>
+
+    <form id="f" autocomplete="off">
+      <label>이름 <span class="req">*필수</span></label>
+      <input type="text" id="name" placeholder="예) 홍길동" maxlength="20">
+
+      <label>성별</label>
+      <div class="seg">
+        <label><input type="radio" name="g" value="남" checked><span>남</span></label>
+        <label><input type="radio" name="g" value="여"><span>여</span></label>
+      </div>
+
+      <label>양력 / 음력</label>
+      <div class="seg">
+        <label><input type="radio" name="cal" value="양력" checked><span>양력</span></label>
+        <label><input type="radio" name="cal" value="음력"><span>음력</span></label>
+      </div>
+
+      <label>생년월일 <span class="req">*필수</span></label>
+      <input type="date" id="birth" min="1920-01-01" max="2025-12-31">
+
+      <label>태어난 시간</label>
+      <div class="row2">
+        <div><input type="time" id="time" value="12:00"></div>
+      </div>
+      <div class="chk"><input type="checkbox" id="notime"> 태어난 시간을 모름 (정오로 계산)</div>
+
+      <div class="privacy">
+        🔒 입력하신 정보는 <b>서버에 저장·전송되지 않고</b>, 이 화면에서 '주문서 텍스트'로만 만들어집니다.
+        완성된 주문서를 <b>당근 채팅으로 직접 보내주시면</b> 접수됩니다. (개인정보 최소수집 · 리포트 발송 목적 외 미사용 · 처리 후 파기)
+      </div>
+
+      <label class="consent"><input type="checkbox" id="agree">
+        <span>위 안내를 확인했고, 사주 리포트 제작을 위해 입력 정보 활용에 동의합니다. <span class="req">*필수</span></span></label>
+
+      <button type="submit" class="btn" id="submit" disabled>주문서 만들기</button>
+      <div class="err" id="err"></div>
+    </form>
+
+    <div class="out" id="out">
+      <h2>✅ 주문서가 만들어졌어요</h2>
+      <textarea id="block" readonly></textarea>
+      <button class="copy" id="copy">📋 주문서 복사하기</button>
+      <p class="send">복사한 주문서를 <b>강테사주 당근 채팅</b>에 붙여넣어 보내주세요.<br>확인 후 사주 리포트를 보내드립니다. 🌙</p>
+    </div>
+  </div>
+
+<script>
+  var from = new URLSearchParams(location.search).get('from')
+          || new URLSearchParams(location.search).get('src') || 'form';
+  var $ = function(id){ return document.getElementById(id); };
+
+  // 시간 모름 토글
+  $('notime').addEventListener('change', function(){
+    $('time').disabled = this.checked;
+    $('time').style.opacity = this.checked ? .45 : 1;
+  });
+  // 동의 체크 시에만 제출 활성화
+  $('agree').addEventListener('change', function(){ $('submit').disabled = !this.checked; });
+
+  $('f').addEventListener('submit', function(e){
+    e.preventDefault();
+    $('err').textContent = '';
+    var name = $('name').value.trim().replace(/[|·\n]/g,'');
+    var birth = $('birth').value; // YYYY-MM-DD
+    if(!name){ $('err').textContent = '이름을 입력해 주세요.'; return; }
+    if(!birth){ $('err').textContent = '생년월일을 선택해 주세요.'; return; }
+    if(!$('agree').checked){ $('err').textContent = '개인정보 활용 동의가 필요합니다.'; return; }
+    var g = document.querySelector('input[name=g]:checked').value;
+    var cal = document.querySelector('input[name=cal]:checked').value;
+    var timeLine = $('notime').checked ? '모름' : ($('time').value || '모름');
+
+    var block =
+      '━━ 강테사주 주문서 ━━\n' +
+      '이름: ' + name + '\n' +
+      '성별: ' + g + '\n' +
+      '달력: ' + cal + '\n' +
+      '생년월일: ' + birth + '\n' +
+      '태어난 시간: ' + timeLine + '\n' +
+      '────────── #v1 src=' + from + '_form';
+
+    $('block').value = block;
+    $('out').classList.add('show');
+    $('out').scrollIntoView({behavior:'smooth', block:'start'});
+  });
+
+  $('copy').addEventListener('click', function(){
+    var ta = $('block');
+    ta.select(); ta.setSelectionRange(0, 99999);
+    var ok = false;
+    try { ok = document.execCommand('copy'); } catch(e){}
+    if(navigator.clipboard){ navigator.clipboard.writeText(ta.value).catch(function(){}); ok = true; }
+    if(ok){ this.textContent = '✅ 복사됐어요 — 당근 채팅에 붙여넣기'; this.classList.add('done'); }
+  });
+</script>
+</body>
+</html>

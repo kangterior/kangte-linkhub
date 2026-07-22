@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>강테사주 · 사주는 나를 이해하는 렌즈예요</title>
+<style>
+  :root{ --inju:#9E2B25; --muk:#2B2622; --gold:#8A6D3B; --paper:#F7F2EA; --card:#fff; --line:#e7ddcb; }
+  @media (prefers-color-scheme: dark){ :root{ --paper:#1a1614; --card:#241f1b; --muk:#f0e9df; --line:#3a332c; } }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{ font-family:'Malgun Gothic','Apple SD Gothic Neo',sans-serif; background:var(--paper);
+        color:var(--muk); min-height:100vh; display:flex; justify-content:center; padding:28px 18px 40px; }
+  .wrap{ width:100%; max-width:420px; text-align:center; }
+  .badge{ width:76px; height:76px; border-radius:50%; margin:0 auto 14px; display:flex; align-items:center;
+          justify-content:center; font-size:38px; background:radial-gradient(circle,#f6e6c8,#e9cf9e);
+          box-shadow:0 4px 16px rgba(138,109,59,.28); }
+  h1{ font-size:20px; color:var(--inju); margin-bottom:4px; letter-spacing:-.3px; }
+  .tag{ font-size:13px; color:var(--gold); margin-bottom:22px; }
+  a.btn{ display:block; text-decoration:none; color:var(--muk); background:var(--card);
+         border:1px solid var(--line); border-radius:15px; padding:15px 18px; margin-bottom:12px;
+         text-align:left; transition:transform .08s, box-shadow .12s; box-shadow:0 1px 4px rgba(0,0,0,.05); }
+  a.btn:active{ transform:scale(.985); }
+  a.btn .t{ font-size:15.5px; font-weight:700; display:block; }
+  a.btn .d{ font-size:12.5px; color:var(--gold); margin-top:3px; }
+  a.primary{ background:linear-gradient(135deg,#a8322b,#7f2420); color:#fff; border-color:transparent; }
+  a.primary .d{ color:#f3d9c7; }
+  .emoji{ font-size:18px; margin-right:7px; }
+  .disc{ font-size:11.5px; color:var(--gold); line-height:1.6; margin-top:20px; opacity:.85; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="badge">🌙</div>
+    <h1>강테사주</h1>
+    <div class="tag">사주는 나를 이해하는 렌즈예요</div>
+
+    <!-- data-url = 강현님이 실제 링크로 교체. ?from= (플랫폼별 바이오)가 자동으로 src로 전달됩니다. -->
+    <a class="btn primary" data-url="https://REPLACE-토스미니앱-URL" data-btn="toss">
+      <span class="t"><span class="emoji">🔮</span>오늘 내 운세 흐름, 30초 미리보기</span>
+      <span class="d">토스에서 990원 · 재미로 보는 참고용이에요</span>
+    </a>
+    <a class="btn" data-url="https://REPLACE-스레드-프로필" data-btn="threads">
+      <span class="t"><span class="emoji">🧵</span>매일 운세썰 더 보기</span>
+      <span class="d">스레드에서 오늘의 이야기</span>
+    </a>
+    <a class="btn" data-url="https://REPLACE-리포트-샘플-랜딩" data-btn="pdf">
+      <span class="t"><span class="emoji">📜</span>2026 하반기 대운 · 전체 리포트</span>
+      <span class="d">샘플 3쪽 먼저 보기 → 15쪽 전체 9,900원</span>
+    </a>
+    <a class="btn primary" data-url="주문폼.html" data-btn="form">
+      <span class="t"><span class="emoji">📝</span>사주 리포트 주문서 작성</span>
+      <span class="d">이름·생일만 입력 → 당근으로 바로 주문</span>
+    </a>
+    <a class="btn" data-url="https://REPLACE-당근-강테사주-소식" data-btn="danggeun">
+      <span class="t"><span class="emoji">🥕</span>강테사주 후기 · 문의</span>
+      <span class="d">당근 비즈프로필</span>
+    </a>
+
+    <p class="disc">
+      운세는 재미와 자기이해를 위한 참고예요. 단정적 예언이 아니라
+      ‘이런 경향/가능성’과 응원으로 봐주세요. 궁합 리포트는 상대방의 동의 하에 이용해 주세요.
+    </p>
+  </div>
+
+<script>
+  // 유입 채널 태깅: 각 플랫폼 바이오 링크에 ?from=ig / ?from=th / ?from=danggeun 를 붙여두면
+  // 허브가 그 값을 목적지 URL의 &src= 로 전달 → '어느 채널이 결제로 이어졌나' 계측의 1차 신호.
+  (function(){
+    var from = new URLSearchParams(location.search).get('from') || 'bio';
+    document.querySelectorAll('a.btn').forEach(function(a){
+      var url = a.getAttribute('data-url'), btn = a.getAttribute('data-btn');
+      if (btn === 'form') {
+        // 내부 주문폼 — 유입 채널(from)을 그대로 넘겨 폼이 src로 태깅
+        a.href = url + '?from=' + encodeURIComponent(from);
+      } else {
+        var sep = url.indexOf('?') >= 0 ? '&' : '?';
+        a.href = url + sep + 'src=' + encodeURIComponent(from + '_' + btn);
+        a.setAttribute('target','_blank'); a.setAttribute('rel','noopener');
+      }
+    });
+  })();
+</script>
+</body>
+</html>
