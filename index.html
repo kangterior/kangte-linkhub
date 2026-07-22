@@ -35,12 +35,10 @@
     <div class="tag">사주는 나를 이해하는 렌즈예요</div>
 
     <!-- data-url = 강현님이 실제 링크로 교체. ?from= (플랫폼별 바이오)가 자동으로 src로 전달됩니다. -->
-    <!-- 토스 미니앱 심사 승인 후 복원 (URL 채워서 주석 해제)
-    <a class="btn primary" data-url="https://REPLACE-토스미니앱-URL" data-btn="toss">
-      <span class="t"><span class="emoji">🔮</span>오늘 내 운세 흐름, 30초 미리보기</span>
-      <span class="d">토스에서 990원 · 재미로 보는 참고용이에요</span>
+    <a class="btn primary" data-url="https://minion.toss.im/37EU6mxr" data-btn="toss">
+      <span class="t"><span class="emoji">🔮</span>내 사주 전체 풀이 · 990원</span>
+      <span class="d">토스 앱에서 바로 · 재미로 보는 참고용이에요</span>
     </a>
-    -->
     <a class="btn" data-url="https://www.threads.net/@kangte.saju" data-btn="threads">
       <span class="t"><span class="emoji">🧵</span>매일 운세썰 더 보기</span>
       <span class="d">스레드에서 오늘의 이야기 · 매일 밤 9시</span>
@@ -52,10 +50,9 @@
     </a>
     -->
 
-    <a class="btn primary" data-url="주문폼.html" data-btn="form">
-      <span class="t"><span class="emoji">📝</span>사주 리포트 주문서 작성</span>
-      <span class="d">이름·생일만 입력 → 당근으로 바로 주문</span>
-    </a>
+    <!-- 주문폼(당근 채팅 수동 플로우)은 토스 인앱 결제 라이브(7/22)로 허브에서 내림.
+         당근 채널 손님용으로 주문폼.html 은 존치 — 당근 소식글에서 직접 링크해 사용. -->
+
     <!-- 당근 비즈프로필 링크 확보 후 복원 (URL 채워서 주석 해제)
     <a class="btn" data-url="https://REPLACE-당근-강테사주-소식" data-btn="danggeun">
       <span class="t"><span class="emoji">🥕</span>강테사주 후기 · 문의</span>
@@ -74,7 +71,9 @@
   // 유입 채널 태깅: 각 플랫폼 바이오 링크에 ?from=ig / ?from=th / ?from=danggeun 를 붙여두면
   // 허브가 그 값을 목적지 URL의 &src= 로 전달 → '어느 채널이 결제로 이어졌나' 계측의 1차 신호.
   (function(){
-    var from = new URLSearchParams(location.search).get('from') || 'bio';
+    // 태그 없는 유입 기본값 = th (스레드 링크칸이 ?from= 쿼리를 거부해서 — 7/22.
+    //  인스타=?from=ig · 당근=?from=dg 는 태그 유지되므로 구분됨)
+    var from = new URLSearchParams(location.search).get('from') || 'th';
     document.querySelectorAll('a.btn').forEach(function(a){
       var url = a.getAttribute('data-url'), btn = a.getAttribute('data-btn');
       if (btn === 'form') {
