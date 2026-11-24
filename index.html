@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>강테사주 · 사주는 나를 이해하는 렌즈예요</title>
+<title>여덟글자 사주 · 여덟 글자로 읽는 나의 흐름</title>
 <style>
   :root{ --inju:#9E2B25; --muk:#2B2622; --gold:#8A6D3B; --paper:#F7F2EA; --card:#fff; --line:#e7ddcb; }
   @media (prefers-color-scheme: dark){ :root{ --paper:#1a1614; --card:#241f1b; --muk:#f0e9df; --line:#3a332c; } }
@@ -11,9 +11,10 @@
   body{ font-family:'Malgun Gothic','Apple SD Gothic Neo',sans-serif; background:var(--paper);
         color:var(--muk); min-height:100vh; display:flex; justify-content:center; padding:28px 18px 40px; }
   .wrap{ width:100%; max-width:420px; text-align:center; }
-  .badge{ width:76px; height:76px; border-radius:50%; margin:0 auto 14px; display:flex; align-items:center;
-          justify-content:center; font-size:38px; background:radial-gradient(circle,#f6e6c8,#e9cf9e);
-          box-shadow:0 4px 16px rgba(138,109,59,.28); }
+  .badge{ width:76px; height:76px; border-radius:12px; margin:0 auto 14px; display:flex; flex-direction:column;
+          align-items:center; justify-content:center; font-size:24px; line-height:1.05; font-family:'Batang','HANBatang',serif;
+          font-weight:700; color:#f8f1e6; background:var(--inju); outline:3px solid #f3eadb; outline-offset:-8px;
+          box-shadow:0 4px 16px rgba(158,43,37,.28); }
   h1{ font-size:20px; color:var(--inju); margin-bottom:4px; letter-spacing:-.3px; }
   .tag{ font-size:13px; color:var(--gold); margin-bottom:22px; }
   a.btn{ display:block; text-decoration:none; color:var(--muk); background:var(--card);
@@ -30,18 +31,22 @@
 </head>
 <body>
   <div class="wrap">
-    <div class="badge">🌙</div>
-    <h1>강테사주</h1>
-    <div class="tag">사주는 나를 이해하는 렌즈예요</div>
+    <div class="badge"><span>八</span><span>字</span></div>
+    <h1>여덟글자 사주</h1>
+    <div class="tag">태어난 해·달·날·시, 여덟 글자로 읽는 나의 흐름</div>
 
-    <!-- data-url = 강현님이 실제 링크로 교체. ?from= (플랫폼별 바이오)가 자동으로 src로 전달됩니다. -->
-    <a class="btn primary" data-url="https://minion.toss.im/37EU6mxr" data-btn="toss">
+    <!-- 11-25 「여덟글자 사주」 새 출발: 맨 위 = 당근 2027 신년 리포트(채팅 신청). ?from= 가 src 로 붙는다 -->
+    <a class="btn primary" data-url="https://www.daangn.com/kr/local-profile/g1fs1j1qtnbi/" data-btn="danggeun">
+      <span class="t"><span class="emoji">📜</span>2027 정미년 신년 사주 리포트 · 29,800원</span>
+      <span class="d">오행 그래프 · 열두 달 운세 · 10년 대운 · 86쪽 PDF — 당근 채팅으로 신청</span>
+    </a>
+    <a class="btn" data-url="https://minion.toss.im/37EU6mxr" data-btn="toss">
       <span class="t"><span class="emoji">🔮</span>내 사주 전체 풀이 · 990원</span>
       <span class="d">토스 앱에서 바로 · 재미로 보는 참고용이에요</span>
     </a>
-    <a class="btn" data-url="https://www.threads.net/@kangte.saju" data-btn="threads">
-      <span class="t"><span class="emoji">🧵</span>매일 운세썰 더 보기</span>
-      <span class="d">스레드에서 오늘의 이야기 · 매일 밤 9시</span>
+    <a class="btn" data-url="https://www.threads.com/@kangte.saju" data-btn="threads">
+      <span class="t"><span class="emoji">🧵</span>매일 밤 9시, 재미로 읽는 사주 이야기</span>
+      <span class="d">스레드 · 지어낸 이야기예요</span>
     </a>
     <!-- 리포트 샘플 랜딩 구축 후 복원
     <a class="btn" data-url="https://REPLACE-리포트-샘플-랜딩" data-btn="pdf">
